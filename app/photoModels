@@ -1,0 +1,25 @@
+from clarifai import rest
+#from clarifai.rest import ClarifaiApp
+
+#photoApp = ClarifaiApp("5rex0UGAx-IFldhN_zR3x1vkPjkniyPiQDoaw2WJ", "GIC2jx8OZ3v9EDxXwIH865KRs8HdOmxoY5CAvBFi")
+
+#photoApp.inputs.create_image_from_url(url="https://s-media-cache-ak0.pinimg.com/originals/fc/fd/03/fcfd035ba4538d2a5f37dfde07dac0b4.jpg", concepts = ["canine", "carriage", "dog", "pet", "puppy", "stroller", "tram", "travel", "wheels"])
+
+
+
+
+
+#photoApp.inputs.create_image_from_url(url="http://www.hence.la/wp-content/uploads/2015/12/Dog-Stroller.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "puppy", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="https://runningwithwishes.files.wordpress.com/2012/09/dog21.jpg",  concepts = ["canine", "carr    iage", "dog", "pet", "pup    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="https://www.baxterboo.com/global/images/products/large/guardian-gear-sprinter-ext-ii-dog-stroller-steel-blue-1.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "pu    p    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="http://ww1.prweb.com/prfiles/2006/05/20/388432/20060506123.JPG", concepts = ["canine", "carr    iage", "dog", "pet", "pu    p    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="https://c3.staticflickr.com/5/4018/4358736938_2e062971e2.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "pu        p    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url = "http://i.dailymail.co.uk/i/pix/2015/01/07/24797EB400000578-0-image-a-2_1420637395426.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "pu            p    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="https://s-media-cache-ak0.pinimg.com/736x/92/aa/39/92aa3962a67adef109b01a334beb8389.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "pup    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="http://dailypicksandflicks.com/wp-content/uploads/2013/02/dachshund-dog-in-baby-stroller.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "pup    py", "stroller", "tram", "travel", "wheels"])
+#photoApp.inputs.create_image_from_url(url="https://az616578.vo.msecnd.net/files/responsive/embedded/any/desktop/2016/06/24/636024022994607867-1589586100_dog%20stroller2.jpg", concepts = ["canine", "carr    iage", "dog", "pet", "pup    py", "stroller", "tram", "travel", "wheels"])
+
+#dogModel = photoApp.models.create(model_id="dogInStroller", concepts = ["canine", "carr    iage", "dog", "pet", "pu    p    py", "stroller", "tram", "travel", "wheels"])
+#dogModel = dogModel.train()
+
+#print dogModel.predict_by_url(url= "http://cdnll.discountramps.com/images/xl/cat-dog-stroller__11.jpg")
