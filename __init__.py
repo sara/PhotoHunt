@@ -1,4 +1,7 @@
 from flask import Flask
-from flask.ext.mongoengine import MongoEngine
+from flask.ext.pymongo import PyMongo
+
 app = Flask(__name__)
-app.config["\x8a\x13\x0c\xb2\xcf\x8c {I\x17Cz}\x19\xd6sR\x8b\xd8\xc6^P\xa2M"] = ''
+app.config['MONGO_DBNAME'] = 'photohunt'
+app.config['MONGO_URI'] = 'mongodb://merp:derp@ds149258.mlab.com:49258/photohunt'
+mongo = PyMongo(app)
