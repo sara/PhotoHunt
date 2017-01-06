@@ -24,10 +24,10 @@ def main():
 	imagePaths = ['dogInStroller', 'happyCouple', 'stopSign', 'stuffedAnimal', 'baby'] 
 	#go through each search concept folder
 	for searchItem in imagePaths:
-		path = './pictures/' + searchItem
-		photoCollection = make_photo_collection(path, searchItem)
-		photoApp.inputs.bulk_create_images(photoCollection)
-		#make_and_train(searchItem)
+		#path = './pictures/' + searchItem
+		#photoCollection = make_photo_collection(path, searchItem)
+		#photoApp.inputs.bulk_create_images(photoCollection)
+		make_and_train(searchItem, photoApp)
 
 def make_photo_collection(path, searchItem):
 	photoCollection = []
@@ -40,9 +40,11 @@ def make_photo_collection(path, searchItem):
 			photoCollection.append(photo)
 	return photoCollection
 
-def make_and_train(model_id):
-	setConcepts = db.photoGoals.find({item: searchItem}, {concepts: 1})
-	model = photoApp.models.create (model_id, concepts = setConcepts)
+def make_and_train(model_id, app):
+	with flaskApp.app_context():
+		raw = mongo.db.photoGoals.find_one({"item": model_id})["concepts"]
+		polished = [str(r) for r in raw]
+	model =  app.models.create (model_id, concepts = polished)
 
 if __name__ == '__main__':
 	main()
