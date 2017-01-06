@@ -7,6 +7,7 @@ from clarifai.rest import Image as ClImage
 from flask import Flask
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
+import json
 
 flaskApp = Flask(__name__)
 flaskApp.config['MONGO_DBNAME'] = 'photohunt'
@@ -35,9 +36,11 @@ def make_photo_collection(path, searchItem):
 	photoCollection = []
 	for path in glob (os.path.join(path, '*.jpg')):
 		with flaskApp.app_context():
-			#photo = ClImage(filename=path, 
-			rawConcepts = mongo.db.photoGoals.find_one({"item": searchItem})
-			print rawConcepts
+			raw = mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]
+			polished = [str(r) for r in raw]
+			print (polished)
+			#print (polished["concepts"])
+			#photo = ClImage(filename=path, concepts = dumps(mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]))
 			#cleanConcepts = rawConcepts["concepts"]
 			#print cleanConcepts
 			#photoCollection.append(photo)
