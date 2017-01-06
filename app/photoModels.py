@@ -22,14 +22,11 @@ mongo = PyMongo(flaskApp)
 def main():
 	photoApp = ClarifaiApp()
 	imagePaths = ['dogInStroller', 'happyCouple', 'stopSign', 'stuffedAnimal', 'baby'] 
-
-		#collection = make_photo_collection(path, searchItem)
-	
 	#go through each search concept folder
 	for searchItem in imagePaths:
 		path = './pictures/' + searchItem
 		photoCollection = make_photo_collection(path, searchItem)
-		#photoApp.inputs.bulk_create_images(photoCollection)
+		photoApp.inputs.bulk_create_images(photoCollection)
 		#make_and_train(searchItem)
 
 def make_photo_collection(path, searchItem):
@@ -38,12 +35,9 @@ def make_photo_collection(path, searchItem):
 		with flaskApp.app_context():
 			raw = mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]
 			polished = [str(r) for r in raw]
-			print (polished)
-			#print (polished["concepts"])
-			#photo = ClImage(filename=path, concepts = dumps(mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]))
-			#cleanConcepts = rawConcepts["concepts"]
+			photo = ClImage(filename=path, concepts = polished)
 			#print cleanConcepts
-			#photoCollection.append(photo)
+			photoCollection.append(photo)
 	return photoCollection
 
 def make_and_train(model_id):
