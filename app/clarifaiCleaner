@@ -1,0 +1,4 @@
+from clarifai.rest import ClarifaiApp
+
+photoApp = ClarifaiApp()
+photoApp.inputs.delete_all()
