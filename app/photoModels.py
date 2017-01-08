@@ -24,11 +24,13 @@ def main():
 	imagePaths = ['dogInStroller', 'happyCouple', 'stopSign', 'stuffedAnimal', 'baby'] 
 	#go through each search concept folder
 	for searchItem in imagePaths:
-		#path = './pictures/' + searchItem
-		#photoCollection = make_photo_collection(path, searchItem)
-		#photoApp.inputs.bulk_create_images(photoCollection)
-		make_and_train(searchItem, photoApp)
+		path = './pictures/' + searchItem
+		photoCollection = make_photo_collection(path, searchItem)
+		photoApp.inputs.bulk_create_images(photoCollection)
+			#***need to fix the make and train... not sure why clarifai is trying to charge?
+		#make_and_train(searchItem, photoApp)
 
+#doesn't seem to be uploading all the pictures, fix this later
 def make_photo_collection(path, searchItem):
 	photoCollection = []
 	for path in glob (os.path.join(path, '*.jpg')):
