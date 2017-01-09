@@ -13,16 +13,13 @@ mongo = PyMongo(app)
 @app.route('/sms', methods = ['POST'])
 def validate():
 	resp = twiml.Response()
-
-	#get teh list of valid user phone numbers and convert to usable array
-	rawUserNums = mongo.db.users.find({})["phoneNumber"]
-	userNums = [str(x) for x in rawUserNums]
-	photoGoals = [str(y).lower for y in mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]]
-	if request.form['From'] not in userNums:
+	userNums = mongo.db.users.count({"phoneNumber": request.form['From']})
+	if userNums != 1:
 		resp.message('Uh oh. Looks like this phone isn\'t part of the game!')
 		return str(resp)
-	elif request.form['NumMedia'] != 1 or request.form['MediaContentType0']!='image/jpeg':
-		resp.message('Whoops! Check that you have 1 picture atteched')
+	if request.form['NumMedia'] != 1 or request.form['MediaContentType0']!='image/jpeg':
+		resp.message('Make sure you attached one image')
+		resp.message(str(rawUserNums))
 		return str(resp)
 	elif request.form['Body'].lower not in photoGoals:
 		resp.message('Sure that\'s the right label?')
@@ -42,4 +39,4 @@ def validate():
 
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
