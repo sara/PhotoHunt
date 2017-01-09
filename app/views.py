@@ -14,25 +14,35 @@ mongo = PyMongo(app)
 def validate():
 	resp = twiml.Response()
 	userNums = mongo.db.users.count({"phoneNumber": request.form['From']})
+	photoGoals = mongo.db.photoGoals.count({"item":request.form['Body']})
 	if userNums != 1:
 		resp.message('Uh oh. Looks like this phone isn\'t part of the game!')
 		return str(resp)
-	if request.form['NumMedia'] != 1 or request.form['MediaContentType0']!='image/jpeg':
-		resp.message('Make sure you attached one image')
-		resp.message(str(rawUserNums))
+	elif int(request.form['NumMedia']) != 1:
+		resp.message('Make sure you attach one picture')
 		return str(resp)
-	elif request.form['Body'].lower not in photoGoals:
+	#fix this later	
+	#elif str(request.form['ContentType'])!='image/jpeg':
+	#	resp.message('Pictures only please!')
+	#	return str(resp)
+
+	elif photoGoals < 1:
 		resp.message('Sure that\'s the right label?')
 		return str(resp)
 	else:
-		resp = ('checkPhoto')
+		url = request.form['MediaUrl0']
+		resp.message(str(url))
 		return str(resp)
 		#return checkPhoto(request.form['MediaUrl'])
 
-#def checkPhoto(picture, tag):
-	#photoApp = ClarifaiApp()
-	#model = photoApp.models.get(tag)
+def checkPhoto(pictureURL, tag):
+	resp = twiml.Response()
+	photoApp = ClarifaiApp()
+	model = photoApp.models.get(tag)
 	#image = ClImage()
+	resp.message(str(pictureURL))
+	return str(resp)
+
 
 
 
