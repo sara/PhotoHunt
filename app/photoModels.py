@@ -46,7 +46,7 @@ def make_and_train(model_id, app):
 	with flaskApp.app_context():
 		raw = mongo.db.photoGoals.find_one({"item": model_id})["concepts"]
 		polished = [str(r) for r in raw]
-	model =  app.models.create (model_id, concepts = polished)
+	model =  app.models.create (model_id, concepts = polished[0])
 
 if __name__ == '__main__':
 	main()
