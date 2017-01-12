@@ -35,10 +35,8 @@ def make_photo_collection(path, searchItem):
 	photoCollection = []
 	for path in glob (os.path.join(path, '*.jpg')):
 		with flaskApp.app_context():
-			raw = mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]
-			polished = [str(r) for r in raw]
-			photo = ClImage(filename=path, concepts = polished)
-			#print cleanConcepts
+			concepts = [str(r) for r in mongo.db.photoGoals.find_one({"item": searchItem})["concepts"]]
+			photo = ClImage(filename=path, concepts = photoConcepts)
 			photoCollection.append(photo)
 	return photoCollection
 
