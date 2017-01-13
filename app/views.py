@@ -42,8 +42,7 @@ def validate():
 		tag = request.form['Body']
 		#match is valid
 		if (checkPhoto(url, tag)):
-			resp.message('Way to go! Your profile has been updated')
-			#resp.message(updateProfile(request.form['From'], tag))
+			resp.message(updateProfile(request.form['From'], tag))
 		#match is not valid
 		else:
 			resp.message('Sorry, that picture doesn\'t count')
